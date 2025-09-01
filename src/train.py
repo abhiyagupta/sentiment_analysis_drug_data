@@ -186,7 +186,20 @@ def main():
         raise FileNotFoundError(f"{train_path} not found in current directory")
 
     df = dm.load_csv(train_path)
-    df = dm.prepare_dataframe(df)
+    # Get initial data stats
+    print("\n📊 Initial data statistics:")
+    initial_stats = dm.get_data_stats(df)
+    for key, value in initial_stats.items():
+        print(f"  {key}: {value}")
+    
+
+
+    df = dm.prepare_dataframe(df) 
+    # Get final data stats
+    print("\n📊 Final data statistics:")
+    final_stats = dm.get_data_stats(df)
+    for key, value in final_stats.items():
+        print(f"  {key}: {value}")
 
     # if not os.path.exists("data\train.csv"):
     #     raise FileNotFoundError("train.csv not found in current directory")
