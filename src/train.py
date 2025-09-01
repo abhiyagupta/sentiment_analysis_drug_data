@@ -179,10 +179,10 @@ def main():
     dm = DataModule()
     trainer = Trainer()
 
-    if not os.path.exists("train.csv"):
+    if not os.path.exists("data\train.csv"):
         raise FileNotFoundError("train.csv not found in current directory")
 
-    df = dm.load_csv("train.csv")
+    df = dm.load_csv("data\train.csv")
     df = dm.prepare_dataframe(df)
 
     # encode labels

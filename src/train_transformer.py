@@ -83,13 +83,13 @@ def main():
     dm = DataModule()
     target_f1 = 0.47
 
-    if not os.path.exists("train.csv"):
+    if not os.path.exists("data\train.csv"):
         raise FileNotFoundError("train.csv not found")
 
     print("🔄 Loading and preprocessing data...")
     
     # Load + preprocess with cleaning
-    df = dm.load_csv("train.csv")
+    df = dm.load_csv("data\train.csv")
     
     # Get initial data stats
     print("\n📊 Initial data statistics:")

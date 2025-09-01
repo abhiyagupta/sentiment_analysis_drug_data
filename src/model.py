@@ -187,7 +187,7 @@ class DrugSentimentPredictor:
         print(f"Saved predictions to {output_csv}")
         return out
     
-    def compare_models(self, csv_path="train.csv"):
+    def compare_models(self, csv_path="data\train.csv"):
         """Compare transformer vs classical on validation split"""
         if not os.path.exists(csv_path):
             raise FileNotFoundError(f"{csv_path} not found")
