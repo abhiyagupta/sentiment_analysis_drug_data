@@ -179,11 +179,20 @@ def main():
     dm = DataModule()
     trainer = Trainer()
 
-    if not os.path.exists("data\train.csv"):
-        raise FileNotFoundError("train.csv not found in current directory")
+    # Use os.path.join for safe path handling
+    train_path = os.path.join("data", "train.csv")
 
-    df = dm.load_csv("data\train.csv")
+    if not os.path.exists(train_path):
+        raise FileNotFoundError(f"{train_path} not found in current directory")
+
+    df = dm.load_csv(train_path)
     df = dm.prepare_dataframe(df)
+
+    # if not os.path.exists("data\train.csv"):
+    #     raise FileNotFoundError("train.csv not found in current directory")
+
+    # df = dm.load_csv("data\train.csv")
+    # df = dm.prepare_dataframe(df)
 
     # encode labels
     y = trainer.label_encoder.fit_transform(df["sentiment"].values)
