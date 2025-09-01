@@ -181,8 +181,12 @@ class DrugSentimentPredictor:
             pred, _ = self.predict_single(row["text"], row.get("drug", "unknown"))
             preds.append(pred)
 
+        # Map string labels to integers **only for submission CSV**
+        label_to_int = {"positive": 0, "negative": 1, "neutral": 2}
+        preds_int = [label_to_int[pred.lower()] for pred in preds]
+
         # Rename unique_hash → id
-        out = pd.DataFrame({"id": df[id_col], "sentiment": preds})
+        out = pd.DataFrame({"id": df[id_col], "sentiment": preds_int})
         out.to_csv(output_csv, index=False)
         print(f"Saved predictions to {output_csv}")
         return out
